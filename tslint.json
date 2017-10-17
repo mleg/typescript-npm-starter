@@ -4,7 +4,8 @@
     "jsRules": {},
     "rules": {
         "quotemark": false,
-        "ordered-imports": false
+        "ordered-imports": false,
+        "arrow-parens": false
     },
     "rulesDirectory": []
 }
