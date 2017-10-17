@@ -1,16 +1,15 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
-
-function clickHandler() {
-    let counter = 0;
-    return function handleClick(event: MouseEvent) {
-        counter += 1;
-        const btn = event.target as HTMLElement;
-        btn.innerText = `Button (clicked ${counter})`;
-    };
-}
+import 'rxjs/add/operator/scan';
 
 const button = document.querySelector('button');
+
+function showCount(count: number) {
+    (button as HTMLElement).innerText = `Button (clicked ${count})`;
+}
+
 if (button) {
-    Observable.fromEvent(button, 'click').subscribe(clickHandler());
+    Observable.fromEvent(button, 'click')
+        .scan((count: number) => count + 1, 0)
+        .subscribe(showCount);
 }
